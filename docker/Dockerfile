@@ -1,7 +1,7 @@
 FROM nvidia/cuda:8.0-cudnn5-devel
 # This script is based on https://github.com/jupyter/docker-stacks/blob/master/base-notebook/Dockerfile
 
-MAINTAINER Taku Yoshioka <taku.yoshioka.4096@google.com>
+MAINTAINER Taku Yoshioka <taku.yoshioka.4096@gmail.com>
 
 USER root
 
