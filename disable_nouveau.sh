@@ -12,7 +12,7 @@ options nouveau modeset=0
 alias nouveau off alias lbm-nouveau off
 EOF
 
-echo 'options nouveau modeset=0' > /etc/modprobe.d/nouveau-kms.conf
+echo options nouveau modeset=0 | sudo tee /etc/modprobe.d/nouveau-kms.conf
 
 sudo update-initramfs -u
 

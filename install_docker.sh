@@ -7,4 +7,3 @@ sudo apt-get update && sudo apt-get install -y docker-engine
 
 # Check install
 sudo docker info
-

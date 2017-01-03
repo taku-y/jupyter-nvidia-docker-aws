@@ -11,12 +11,13 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 # features (e.g., download as all possible file formats)
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get -yq dist-upgrade \
- && apt-get install -yq --no-install-recommends \
+&& apt-get install -yq --no-install-recommends \
     wget \
     bzip2 \
     ca-certificates \
     sudo \
     locales \
+    git \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -44,6 +45,11 @@ ENV LANGUAGE en_US.UTF-8
 RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
     mkdir -p $CONDA_DIR && \
     chown $NB_USER $CONDA_DIR
+
+# Setup CuDNN
+ENV LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+RUN cd /usr/lib/x86_64-linux-gnu && \
+    ln -s libcudnn.so.4 libcudnn.so
 
 USER $NB_USER
 
@@ -89,13 +95,6 @@ COPY start-notebook.sh /usr/local/bin/
 COPY start-singleuser.sh /usr/local/bin/
 COPY jupyter_notebook_config.py /home/$NB_USER/.jupyter/
 RUN chown -R $NB_USER:users /home/$NB_USER/.jupyter
-
-# Setup CuDNN
-export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
-pushd /usr/lib/x86_64-linux-gnu
-ln -s libcudnn.so.4 libcudnn.so
-popd
-/run_jupyter.sh
 
 # Switch back to jovyan to avoid accidental container runs as root
 USER $NB_USER
