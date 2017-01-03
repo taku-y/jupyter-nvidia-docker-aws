@@ -1,5 +1,5 @@
 # Scripts for using GPU with NVIDIA Docker on AWS
-The scripts in this repository are used to run (Jupyter notebook)[http://jupyter.org] with [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker) on [AWS](https://aws.amazon.com). 
+The scripts in this repository are used to run [Jupyter notebook](http://jupyter.org) with [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker) on [AWS](https://aws.amazon.com). 
 
 These scripts are based on a [post](http://qiita.com/masafumi_miya/items/8263a25642d65a0c4a20) (in Japanese).
 
